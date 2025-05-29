@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: mon-site
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    Start Command: gunicorn fileApp.wsgi:application --host 0.0.0.0 --port $PORT
