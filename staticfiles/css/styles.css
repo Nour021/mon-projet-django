@@ -1,0 +1,390 @@
+/* Variables globales */
+:root {
+    /* Couleurs */
+    --primary: #2c3e50;
+    --secondary: #1abc9c;
+    --accent: #3498db;
+    --light: #f8f9fa;
+    --dark: #343a40;
+    --text: #2c3e50;
+    --gray-light: #ecf0f1;
+    --gray: #bdc3c7;
+    --badge-align: #17a2b8;
+    --badge-unalign: #6c757d;
+    --btn-view: #1976d2;
+    --btn-download: #219150;
+    --shadow: rgba(44, 62, 80, 0.06);
+
+    /* Espacements */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 12px;
+    --spacing-lg: 16px;
+    --spacing-xl: 20px;
+
+    /* Animations */
+    --transition: all 0.2s ease;
+}
+/* Reset et styles de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    width: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #f8f9fa; /* Couleur de fond neutre */
+}
+
+/* Conteneur principal avec l'image de fond UNIQUEMENT dans cette zone */
+.main-container {
+    min-height: 100vh;
+    padding: 2rem;
+    
+    /* Background image uniquement dans cette zone */
+    background-image: url('../images/Z-DNA.jpeg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    
+    /* Overlay pour améliorer la lisibilité */
+    position: relative;
+}
+
+/* Overlay semi-transparent sur le background */
+.main-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.2) 0%,
+        rgba(44, 62, 80, 0.3) 50%,
+        rgba(26, 188, 156, 0.2) 100%
+    );
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Assurer que le contenu est au-dessus de l'overlay */
+.main-container > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* Texte du titre avec ombre pour contraste */
+.main-container h1,
+.main-container .lead {
+    color: #f2f3f5;
+    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8);
+    font-weight: 700;
+}
+
+/* Ligne horizontale */
+.main-container hr {
+    border-color: rgba(44, 62, 80, 0.3);
+    opacity: 1;
+    border-width: 2px;
+}
+
+/* Carte d'analyse avec transparence */
+.analysis-card {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15) !important;
+    border-radius: 15px !important;
+}
+
+/* Styles des métriques */
+.metric-item {
+    transition: var(--transition);
+    border-left: 4px solid var(--accent);
+    background: rgba(248, 249, 250, 0.9) !important;
+}
+
+.metric-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-left-color: var(--secondary);
+    background: rgba(248, 249, 250, 1) !important;
+}
+
+.metric-percent {
+    color: var(--accent);
+    font-size: 1.3em;
+    margin-right: 0.5rem;
+}
+
+.metric-title {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+/* Bouton de téléchargement */
+.btn-primary {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--secondary) 100%);
+    border: none;
+    padding: 15px 35px;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
+    background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .main-container {
+        padding: 1rem;
+        background-attachment: scroll;
+    }
+    
+    .analysis-card {
+        margin: 1rem 0;
+        padding: 1.5rem !important;
+    }
+    
+    .btn-primary {
+        padding: 12px 25px;
+        font-size: 0.9rem;
+    }
+    
+    .main-container h1 {
+        font-size: 1.8rem;
+    }
+    
+    .main-container .lead {
+        font-size: 1rem;
+    }
+}
+
+/* Animation d'entrée */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.analysis-card {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.metric-item {
+    animation: fadeInUp 0.6s ease-out;
+    animation-fill-mode: both;
+}
+
+.metric-item:nth-child(1) { animation-delay: 0.1s; }
+.metric-item:nth-child(2) { animation-delay: 0.2s; }
+.metric-item:nth-child(3) { animation-delay: 0.3s; }
+.metric-item:nth-child(4) { animation-delay: 0.4s; }
+.search-bar {
+    margin-bottom: 20px;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(52, 168, 83, 0.2);
+}
+
+/* Filtres */
+.filters-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+    gap: var(--spacing-md);
+}
+
+.filter-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+
+.filter-badge {
+    background-color: var(--gray-light);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: var(--transition);
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.filter-badge:hover {
+    background-color: var(--gray);
+    transform: translateY(-1px);
+}
+
+/* Liste des fichiers */
+.file-list {
+    margin-bottom: var(--spacing-lg);
+}
+
+.file-item {
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--gray-light);
+    animation: fadeIn 0.3s ease forwards;
+    position: relative;
+    overflow: hidden;
+    background-color: white;
+    transition: var(--transition);
+}
+
+.file-item:hover {
+    background-color: var(--gray-light);
+    transform: translateX(5px);
+    box-shadow: 0 2px 8px var(--shadow);
+}
+
+.file-name {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    flex: 1;
+    min-width: 0;
+}
+
+.file-badge {
+    font-size: 0.75rem;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: 9999px;
+    color: white;
+    font-weight: 600;
+    transition: var(--transition);
+    min-width: 80px;
+    text-align: center;
+}
+
+
+.aligned {
+    background-color: var(--badge-align);
+}
+
+.unaligned {
+    background-color: var(--badge-unalign);
+}
+
+/* Boutons */
+.action-buttons {
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-shrink: 0;
+}
+
+.btn {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: 6px;
+    border: none;
+    font-weight: 500;
+    transition: var(--transition);
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: var(--btn-view);
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover {
+    background-color: #1453a1;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-success {
+    background-color: var(--btn-download);
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-success:hover {
+    background-color: #146b41;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.loading {
+    animation: pulse 1.5s infinite;
+}
+
+.big-btn {
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    border-radius: 0.5rem;
+}
+
+/* Section métriques */
+.metric-item {
+    font-size: 1rem;
+}
+
+.metric-percent {
+    font-weight: bold;
+    color: #0c0c0c;
+}
+#advancedFilters {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+#advancedFilters.show {
+    max-height: 500px; /* Ajuste selon ta taille réelle */
+    transition: max-height 0.3s ease-in;
+}
+.advanced-filters {
+    display: none;
+}
+
+.advanced-filters.show {
+    display: block; /* ou inline-block / flex selon ton besoin */
+}
