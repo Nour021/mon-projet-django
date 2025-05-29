@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Résultats d'Analyse - Visualiseur FASTA</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    
+    <!-- Custom CSS -->
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+</head>
+<body>
+    <!-- Contenu principal avec background dans la zone blanche -->
+    <div class="main-container">
+        <!-- En-tête centré -->
+        <div class="text-center mb-5 ">
+            <h1 class="display-5 fw-bold">Résultats d'Analyse</h1>
+            <p class="lead">Scores pour les fichiers d'alignement de séquences</p>
+            <hr class="mx-auto my-4" style="width: 50%;">
+        </div>
+        
+        <!-- Section Fichier d'analyse -->
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="analysis-card bg-white bg-opacity-90 p-5 rounded-3 shadow">
+                    <h2 class="text-center mb-4">Fichier d'analyse complet</h2>
+                    <p class="text-center mb-4 text-muted">Ce fichier contient tous les résultats d'analyse pour les 950 séquences, incluant les métriques de qualité d'alignement et les scores comparatifs.</p>
+                    
+                    <!-- Liste des métriques -->
+                    <div class="mb-4">
+                        <div class="metric-item mb-3 p-3 bg-light rounded">
+                            <span class="metric-percent fw-bold text-primary">%</span> 
+                            <span class="metric-title fw-semibold">Non-Gaps</span> - Pourcentage de positions non-gaps
+                        </div>
+                        <div class="metric-item mb-3 p-3 bg-light rounded">
+                            <span class="metric-percent fw-bold text-primary">%</span> 
+                            <span class="metric-title fw-semibold">Colonnes Conservées</span> - Pourcentage de colonnes totalement conservées
+                        </div>
+                        <div class="metric-item mb-3 p-3 bg-light rounded">
+                            <span class="metric-title fw-semibold">Score Entropie</span> - Mesure de diversité des séquences
+                        </div>
+                        <div class="metric-item mb-3 p-3 bg-light rounded">
+                            <span class="metric-title fw-semibold">SumOfPairs (Blosum62, PAM250, PAM380)</span> - Scores d'alignement par paires
+                        </div>
+                    </div>
+                    
+                    <!-- Bouton de téléchargement centré -->
+                    <div class="text-center mt-4">
+                        <a href="{% static 'files/ScoresAll_Sorted.xlsx' %}" class="btn btn-primary btn-lg" download>
+                            <i class="bi bi-download me-2"></i> Télécharger le fichier Excel
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
